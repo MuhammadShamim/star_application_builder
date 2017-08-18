@@ -1,0 +1,49 @@
+<!--In the Name of God, Most Gracious, Most Merciful.-->
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Muhammad Akhtar Shamim">
+    <meta name="contact email" content="shaminaus@gmail.com">
+    <meta name="application" content="star application builder">
+    <title>Star Application Builder</title>
+    <link rel="shortcut icon" type="image/ico" href="star.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+    <div id="app" v-on:mousemove="updateCoordinates">
+        <div id="config">
+            <span>Favicon: {{ favico }}</span>
+            <input type="text" v-on:input="changeFavicon" v-model="favico">
+            <code>http://wwex.com/cip/lion/images/lion.ico</code>
+            <hr>
+            <span>Title: {{ title }}</span>
+            <input type="text" v-on:input="changeTitle" v-model="title">
+            <hr>
+            <span>Icon: <i v-bind:class="[icon]" aria-hidden="true"></i></span>
+            <span>{{ love }} <i v-on:click="lovePlus(bonus, $event)" class="fa fa-heart" aria-hidden="true"></i></span>
+            <input type="text" v-on:input="changeIcon" v-model="icon">
+
+            <hr>
+            <a v-bind:href="githubLink">Github Repo Link</a>
+
+            <hr>
+            <!--<partialArts v-once v-html="partialArtsLink"></partialArts>-->
+
+        </div>
+        <hr>
+        <div id="coordinates">
+            <span>{{ x }} / {{ y }}</span>
+        </div>
+        <div id="bonus-hit" v-if="love === 50">
+            <span>{{ bonusHit() }}</span>
+        </div>
+        <hr>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    <script src="star.js"></script>
+</body>
+</html>
