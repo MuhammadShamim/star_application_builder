@@ -1,6 +1,6 @@
 <!--In the Name of God, Most Gracious, Most Merciful.-->
 <!doctype html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,38 +12,112 @@
     <title>Star Application Builder</title>
     <link rel="shortcut icon" type="image/ico" href="star.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="vendors/bulma-0.5.1/css/bulma.css"/>
 </head>
 <body>
-    <div id="app" v-on:mousemove="updateCoordinates">
-        <div id="config">
-            <span>Favicon: {{ favico }}</span>
-            <input type="text" v-on:input="changeFavicon" v-model="favico">
-            <code>http://wwex.com/cip/lion/images/lion.ico</code>
-            <hr>
-            <span>Title: {{ title }}</span>
-            <input type="text" v-on:input="changeTitle" v-model="title">
-            <hr>
-            <span>Icon: <i v-bind:class="[icon]" aria-hidden="true"></i></span>
-            <span>{{ love }} <i v-on:click="lovePlus(bonus, $event)" class="fa fa-heart" aria-hidden="true"></i></span>
-            <input type="text" v-on:input="changeIcon" v-model="icon">
+    <section id="app" @mousemove="updateCoordinates" class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <header class="nav">
+                <div class="container">
+                    <div class="nav-left">
+                        <a class="nav-item" href="#">
+                            <i :class="[icon]" aria-hidden="true"></i>&nbsp;
+                            {{ name }}
+                        </a>
+                    </div>
+                    <span class="nav-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="nav-right nav-menu">
+                        <a class="nav-item is-active">
+                            Home
+                        </a>
+                        <a class="nav-item" :href="githubDoc">
+                            Documentation
+                        </a>
+                        <span class="nav-item">
+                            <a class="button is-info is-outlined is-inverted" :href="githubRepo">
+                              <span class="icon">
+                                <i class="fa fa-github"></i>
+                              </span>
+                              <span>Download</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <div class="field">
+                    <label class="label">Favicon: {{ favico }}</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" @input="changeFavicon" v-model="favico">
+                    </div>
+                </div>
 
-            <hr>
-            <a v-bind:href="githubLink">Github Repo Link</a>
+                <div class="field">
+                    <label class="label">Title: {{ title }}</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" @input="changeTitle" v-model="title">
+                    </div>
+                </div>
 
-            <hr>
-            <!--<partialArts v-once v-html="partialArtsLink"></partialArts>-->
+                <div class="field">
+                    <label class="label">Name:</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" @input="changeName" v-model="name">
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Icon: <i :class="[icon]" aria-hidden="true"></i></label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" @input="changeIcon" v-model="icon">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">{{ x }} / {{ y }}</label>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">{{ bonusHit }}</label>
+                </div>
+
+                <div class="field">
+                    <label class="label">{{ love }}</label>
+                    <div class="control">
+                        <i @click="lovePlus(bonus, $event)" class="fa fa-heart" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
 
         </div>
-        <hr>
-        <div id="coordinates">
-            <span>{{ x }} / {{ y }}</span>
+
+        <div class="hero-foot">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <div>
+                        <a :href="githubRepo" class="button is-small is-info is-inverted is-outlined">
+                            <i :class="[icon]" aria-hidden="true"></i>&nbsp;
+                            {{ name }}
+                        </a>
+                        by
+                        <a :href="authorLink" class="button is-small is-info is-inverted is-outlined">
+                            {{ authorName }}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="bonus-hit" v-if="love === 50">
-            <span>{{ bonusHit() }}</span>
-        </div>
-        <hr>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
     <script src="star.js"></script>
 </body>
 </html>
